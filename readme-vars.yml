@@ -1,7 +1,7 @@
 ---
 
 # project information
-project_name: snapdrop
+project_name: pairdrop
 project_url: "https://github.com/schlagmichdoch/PairDrop"
 project_logo: "https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/public/images/android-chrome-512x512.png"
 project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) provides local file sharing in your browser. Inspired by Apple's Airdrop."

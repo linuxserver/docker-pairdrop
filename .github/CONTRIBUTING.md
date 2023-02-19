@@ -1,4 +1,4 @@
-# Contributing to snapdrop
+# Contributing to pairdrop
 
 ## Gotchas
 
@@ -24,10 +24,10 @@
 ## Readme
 
 If you would like to change our readme, please __**do not**__ directly edit the readme, as it is auto-generated on each commit.
-Instead edit the [readme-vars.yml](https://github.com/linuxserver/docker-snapdrop/edit/master/readme-vars.yml).
+Instead edit the [readme-vars.yml](https://github.com/linuxserver/docker-pairdrop/edit/master/readme-vars.yml).
 
 These variables are used in a template for our [Jenkins Builder](https://github.com/linuxserver/docker-jenkins-builder) as part of an ansible play.
-Most of these variables are also carried over to [docs.linuxserver.io](https://docs.linuxserver.io/images/docker-snapdrop)
+Most of these variables are also carried over to [docs.linuxserver.io](https://docs.linuxserver.io/images/docker-pairdrop)
 
 ### Fixing typos or clarify the text in the readme
 
@@ -97,12 +97,12 @@ If you are proposing additional packages to be added, ensure that you added the 
 ### Testing your changes
 
 ```bash
-git clone https://github.com/linuxserver/docker-snapdrop.git
-cd docker-snapdrop
+git clone https://github.com/linuxserver/docker-pairdrop.git
+cd docker-pairdrop
 docker build \
   --no-cache \
   --pull \
-  -t linuxserver/snapdrop:latest .
+  -t linuxserver/pairdrop:latest .
 ```
 
 The ARM variants can be built on x86_64 hardware using `multiarch/qemu-user-static`
@@ -115,7 +115,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Update the changelog
 
-If you are modifying the Dockerfiles or any of the startup scripts in [root](https://github.com/linuxserver/docker-snapdrop/tree/master/root), add an entry to the changelog
+If you are modifying the Dockerfiles or any of the startup scripts in [root](https://github.com/linuxserver/docker-pairdrop/tree/master/root), add an entry to the changelog
 
 ```yml
 changelogs:

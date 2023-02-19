@@ -12,17 +12,17 @@ jobs:
       - name: External Trigger
         if: github.ref == 'refs/heads/master'
         run: |
-          if [ -n "${{ secrets.PAUSE_EXTERNAL_TRIGGER_SNAPDROP_MASTER }}" ]; then
-            echo "**** Github secret PAUSE_EXTERNAL_TRIGGER_SNAPDROP_MASTER is set; skipping trigger. ****"
+          if [ -n "${{ secrets.PAUSE_EXTERNAL_TRIGGER_PAIRDROP_MASTER }}" ]; then
+            echo "**** Github secret PAUSE_EXTERNAL_TRIGGER_PAIRDROP_MASTER is set; skipping trigger. ****"
             exit 0
           fi
-          echo "**** External trigger running off of master branch. To disable this trigger, set a Github secret named \"PAUSE_EXTERNAL_TRIGGER_SNAPDROP_MASTER\". ****"
+          echo "**** External trigger running off of master branch. To disable this trigger, set a Github secret named \"PAUSE_EXTERNAL_TRIGGER_PAIRDROP_MASTER\". ****"
           echo "**** Retrieving external version ****"
-          EXT_RELEASE=$(curl -u "${{ secrets.CR_USER }}:${{ secrets.CR_PAT }}" -sX GET "https://api.github.com/repos/schlagmichdoch/pairdrop/commits/master" | jq -r '. | .sha' | cut -c1-8)
+          EXT_RELEASE=$(curl -u ${{ secrets.CR_USER }}:${{ secrets.CR_PAT }} -sL https://api.github.com/repos/schlagmichdoch/pairdrop/tags | jq -r .[0].name)
           if [ -z "${EXT_RELEASE}" ] || [ "${EXT_RELEASE}" == "null" ]; then
             echo "**** Can't retrieve external version, exiting ****"
-            FAILURE_REASON="Can't retrieve external version for snapdrop branch master"
-            GHA_TRIGGER_URL="https://github.com/linuxserver/docker-snapdrop/actions/runs/${{ github.run_id }}"
+            FAILURE_REASON="Can't retrieve external version for pairdrop branch master"
+            GHA_TRIGGER_URL="https://github.com/linuxserver/docker-pairdrop/actions/runs/${{ github.run_id }}"
             curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 16711680,
               "description": "**Trigger Failed** \n**Reason:** '"${FAILURE_REASON}"' \n**Trigger URL:** '"${GHA_TRIGGER_URL}"' \n"}],
               "username": "Github Actions"}' ${{ secrets.DISCORD_WEBHOOK }}
@@ -31,10 +31,10 @@ jobs:
           EXT_RELEASE=$(echo ${EXT_RELEASE} | sed 's/[~,%@+;:/]//g')
           echo "**** External version: ${EXT_RELEASE} ****"
           echo "**** Retrieving last pushed version ****"
-          image="linuxserver/snapdrop"
+          image="linuxserver/pairdrop"
           tag="latest"
           token=$(curl -sX GET \
-            "https://ghcr.io/token?scope=repository%3Alinuxserver%2Fsnapdrop%3Apull" \
+            "https://ghcr.io/token?scope=repository%3Alinuxserver%2Fpairdrop%3Apull" \
             | jq -r '.token')
             multidigest=$(curl -s \
               --header "Accept: application/vnd.docker.distribution.manifest.v2+json" \
@@ -58,7 +58,7 @@ jobs:
           IMAGE_VERSION=$(echo ${IMAGE_RELEASE} | awk -F'-ls' '{print $1}')
           if [ -z "${IMAGE_VERSION}" ]; then
             echo "**** Can't retrieve last pushed version, exiting ****"
-            FAILURE_REASON="Can't retrieve last pushed version for snapdrop tag latest"
+            FAILURE_REASON="Can't retrieve last pushed version for pairdrop tag latest"
             curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 16711680,
               "description": "**Trigger Failed** \n**Reason:** '"${FAILURE_REASON}"' \n"}],
               "username": "Github Actions"}' ${{ secrets.DISCORD_WEBHOOK }}
@@ -68,13 +68,13 @@ jobs:
           if [ "${EXT_RELEASE}" == "${IMAGE_VERSION}" ]; then
             echo "**** Version ${EXT_RELEASE} already pushed, exiting ****"
             exit 0
-          elif [ $(curl -s https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-snapdrop/job/master/lastBuild/api/json | jq -r '.building') == "true" ]; then
+          elif [ $(curl -s https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pairdrop/job/master/lastBuild/api/json | jq -r '.building') == "true" ]; then
             echo "**** New version ${EXT_RELEASE} found; but there already seems to be an active build on Jenkins; exiting ****"
             exit 0
           else
             echo "**** New version ${EXT_RELEASE} found; old version was ${IMAGE_VERSION}. Triggering new build ****"
             response=$(curl -iX POST \
-              https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-snapdrop/job/master/buildWithParameters?PACKAGE_CHECK=false \
+              https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pairdrop/job/master/buildWithParameters?PACKAGE_CHECK=false \
               --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }} | grep -i location | sed "s|^[L|l]ocation: \(.*\)|\1|")
             echo "**** Jenkins job queue url: ${response%$'\r'} ****"
             echo "**** Sleeping 10 seconds until job starts ****"
@@ -89,7 +89,7 @@ jobs:
               --data-urlencode "description=GHA external trigger https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
               --data-urlencode "Submit=Submit"
             echo "**** Notifying Discord ****"
-            TRIGGER_REASON="A version change was detected for snapdrop tag latest. Old version:${IMAGE_VERSION} New version:${EXT_RELEASE}"
+            TRIGGER_REASON="A version change was detected for pairdrop tag latest. Old version:${IMAGE_VERSION} New version:${EXT_RELEASE}"
             curl -X POST -H "Content-Type: application/json" --data '{"avatar_url": "https://cdn.discordapp.com/avatars/354986384542662657/df91181b3f1cf0ef1592fbe18e0962d7.png","embeds": [{"color": 9802903,
               "description": "**Build Triggered** \n**Reason:** '"${TRIGGER_REASON}"' \n**Build URL:** '"${buildurl}display/redirect"' \n"}],
               "username": "Github Actions"}' ${{ secrets.DISCORD_WEBHOOK }}

@@ -102,23 +102,16 @@ pipeline {
     /* ########################
        External Release Tagging
        ######################## */
-    // If this is a github commit trigger determine the current commit at head
-    stage("Set ENV github_commit"){
-     steps{
-       script{
-         env.EXT_RELEASE = sh(
-           script: '''curl -H "Authorization: token ${GITHUB_TOKEN}" -s https://api.github.com/repos/${EXT_USER}/${EXT_REPO}/commits/${EXT_GIT_BRANCH} | jq -r '. | .sha' | cut -c1-8 ''',
-           returnStdout: true).trim()
-       }
-     }
-    }
-    // If this is a github commit trigger Set the external release link
-    stage("Set ENV commit_link"){
-     steps{
-       script{
-         env.RELEASE_LINK = 'https://github.com/' + env.EXT_USER + '/' + env.EXT_REPO + '/commit/' + env.EXT_RELEASE
-       }
-     }
+    // If this is a custom command to determine version use that command
+    stage("Set tag custom bash"){
+      steps{
+        script{
+          env.EXT_RELEASE = sh(
+            script: ''' curl -sL https://api.github.com/repos/schlagmichdoch/pairdrop/tags | jq -r .[0].name ''',
+            returnStdout: true).trim()
+            env.RELEASE_LINK = 'custom_command'
+        }
+      }
     }
     // Sanitize the release tag and strip illegal docker or github characters
     stage("Sanitize tag"){
@@ -421,18 +414,18 @@ pipeline {
       steps{
         sh '''#! /bin/bash
               set -e
-              PACKAGE_UUID=$(curl -X GET -H "Authorization: Bearer ${SCARF_TOKEN}" https://scarf.sh/api/v1/organizations/linuxserver-ci/packages | jq -r '.[] | select(.name=="linuxserver/snapdrop") | .uuid')
+              PACKAGE_UUID=$(curl -X GET -H "Authorization: Bearer ${SCARF_TOKEN}" https://scarf.sh/api/v1/organizations/linuxserver-ci/packages | jq -r '.[] | select(.name=="linuxserver/pairdrop") | .uuid')
               if [ -z "${PACKAGE_UUID}" ]; then
                 echo "Adding package to Scarf.sh"
                 curl -sX POST https://scarf.sh/api/v1/organizations/linuxserver-ci/packages \
                   -H "Authorization: Bearer ${SCARF_TOKEN}" \
                   -H "Content-Type: application/json" \
-                  -d '{"name":"linuxserver/snapdrop",\
+                  -d '{"name":"linuxserver/pairdrop",\
                        "shortDescription":"example description",\
                        "libraryType":"docker",\
-                       "website":"https://github.com/linuxserver/docker-snapdrop",\
-                       "backendUrl":"https://ghcr.io/linuxserver/snapdrop",\
-                       "publicUrl":"https://lscr.io/linuxserver/snapdrop"}' || :
+                       "website":"https://github.com/linuxserver/docker-pairdrop",\
+                       "backendUrl":"https://ghcr.io/linuxserver/pairdrop",\
+                       "publicUrl":"https://lscr.io/linuxserver/pairdrop"}' || :
               else
                 echo "Package already exists on Scarf.sh"
               fi
@@ -455,16 +448,16 @@ pipeline {
         sh "docker build \
           --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
           --label \"org.opencontainers.image.authors=linuxserver.io\" \
-          --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-snapdrop/packages\" \
-          --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-snapdrop\" \
-          --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-snapdrop\" \
+          --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-pairdrop/packages\" \
+          --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-pairdrop\" \
+          --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-pairdrop\" \
           --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ls${LS_TAG_NUMBER}\" \
           --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
           --label \"org.opencontainers.image.vendor=linuxserver.io\" \
           --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
           --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-          --label \"org.opencontainers.image.title=Snapdrop\" \
-          --label \"org.opencontainers.image.description=[Snapdrop](https://github.com/schlagmichdoch/PairDrop) provides local file sharing in your browser. Inspired by Apple's Airdrop.\" \
+          --label \"org.opencontainers.image.title=Pairdrop\" \
+          --label \"org.opencontainers.image.description=[Pairdrop](https://github.com/schlagmichdoch/PairDrop) provides local file sharing in your browser. Inspired by Apple's Airdrop.\" \
           --no-cache --pull -t ${IMAGE}:${META_TAG} \
           --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
       }
@@ -485,16 +478,16 @@ pipeline {
             sh "docker build \
               --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
               --label \"org.opencontainers.image.authors=linuxserver.io\" \
-              --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-snapdrop/packages\" \
-              --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-snapdrop\" \
-              --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-snapdrop\" \
+              --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-pairdrop/packages\" \
+              --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-pairdrop\" \
+              --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-pairdrop\" \
               --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ls${LS_TAG_NUMBER}\" \
               --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.vendor=linuxserver.io\" \
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-              --label \"org.opencontainers.image.title=Snapdrop\" \
-              --label \"org.opencontainers.image.description=[Snapdrop](https://github.com/schlagmichdoch/PairDrop) provides local file sharing in your browser. Inspired by Apple's Airdrop.\" \
+              --label \"org.opencontainers.image.title=Pairdrop\" \
+              --label \"org.opencontainers.image.description=[Pairdrop](https://github.com/schlagmichdoch/PairDrop) provides local file sharing in your browser. Inspired by Apple's Airdrop.\" \
               --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
           }
@@ -512,16 +505,16 @@ pipeline {
             sh "docker build \
               --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
               --label \"org.opencontainers.image.authors=linuxserver.io\" \
-              --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-snapdrop/packages\" \
-              --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-snapdrop\" \
-              --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-snapdrop\" \
+              --label \"org.opencontainers.image.url=https://github.com/linuxserver/docker-pairdrop/packages\" \
+              --label \"org.opencontainers.image.documentation=https://docs.linuxserver.io/images/docker-pairdrop\" \
+              --label \"org.opencontainers.image.source=https://github.com/linuxserver/docker-pairdrop\" \
               --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ls${LS_TAG_NUMBER}\" \
               --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.vendor=linuxserver.io\" \
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-              --label \"org.opencontainers.image.title=Snapdrop\" \
-              --label \"org.opencontainers.image.description=[Snapdrop](https://github.com/schlagmichdoch/PairDrop) provides local file sharing in your browser. Inspired by Apple's Airdrop.\" \
+              --label \"org.opencontainers.image.title=Pairdrop\" \
+              --label \"org.opencontainers.image.description=[Pairdrop](https://github.com/schlagmichdoch/PairDrop) provides local file sharing in your browser. Inspired by Apple's Airdrop.\" \
               --no-cache --pull -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} \
               --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${VERSION_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
             sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ghcr.io/linuxserver/lsiodev-buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}"
@@ -866,11 +859,11 @@ pipeline {
              "tagger": {"name": "LinuxServer Jenkins","email": "jenkins@linuxserver.io","date": "'${GITHUB_DATE}'"}}' '''
         echo "Pushing New release for Tag"
         sh '''#! /bin/bash
-              curl -H "Authorization: token ${GITHUB_TOKEN}" -s https://api.github.com/repos/${EXT_USER}/${EXT_REPO}/commits/${EXT_RELEASE_CLEAN} | jq '.commit.message' | sed 's:^.\\(.*\\).$:\\1:' > releasebody.json
+              echo "Updating to ${EXT_RELEASE_CLEAN}" > releasebody.json
               echo '{"tag_name":"'${META_TAG}'",\
                      "target_commitish": "master",\
                      "name": "'${META_TAG}'",\
-                     "body": "**LinuxServer Changes:**\\n\\n'${LS_RELEASE_NOTES}'\\n\\n**'${EXT_REPO}' Changes:**\\n\\n' > start
+                     "body": "**LinuxServer Changes:**\\n\\n'${LS_RELEASE_NOTES}'\\n\\n**Remote Changes:**\\n\\n' > start
               printf '","draft": false,"prerelease": false}' >> releasebody.json
               paste -d'\\0' start releasebody.json > releasebody.json.done
               curl -H "Authorization: token ${GITHUB_TOKEN}" -X POST https://api.github.com/repos/${LS_USER}/${LS_REPO}/releases -d @releasebody.json.done'''
