@@ -29,7 +29,7 @@ RUN \
     "https://github.com/schlagmichdoch/PairDrop/archive/${PAIRDROP_RELEASE}.tar.gz" && \
   tar xf \
     /tmp/pairdrop.tar.gz -C \
-    /app/www/ --strip-components=1 && \
+    /app/pairdrop/ --strip-components=1 && \
   cd /app/pairdrop && \
   npm ci && \
   echo "**** cleanup ****" && \
