@@ -1,0 +1,58 @@
+---
+
+# project information
+project_name: snapdrop
+project_url: "https://github.com/schlagmichdoch/PairDrop"
+project_logo: "https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/public/images/android-chrome-512x512.png"
+project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) provides local file sharing in your browser. Inspired by Apple's Airdrop."
+project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
+
+project_blurb_optional_extras_enabled: false
+project_blurb_optional_extras: []
+
+# supported architectures
+available_architectures:
+  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
+  
+# development version
+development_versions: false
+development_versions_items:
+
+# container parameters
+common_param_env_vars_enabled: true
+param_container_name: "{{ project_name }}"
+
+param_usage_include_net: false
+
+param_usage_include_env: false
+
+opt_param_usage_include_env: true
+opt_param_env_vars:
+  - { env_var: "RATE_LIMIT", env_value: "false", desc: "Set to `true` to limit clients to 100 requests per 5 min" }
+  - { env_var: "WS_FALLBACK", env_value: "false", desc: "Set to `true`` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes)." }
+
+param_usage_include_vols: false
+
+param_usage_include_ports: true
+param_ports:
+  - { external_port: "3000", internal_port: "3000", port_desc: "http gui" }
+
+# application setup block
+app_setup_block_enabled: true
+app_setup_block: |
+  Web UI is accessible at http://SERVERIP:PORT. It is strongly recommended to run PairDrop via a reverse proxy, served over HTTPS. In this configuration you must ensure that the `X-Forwarded-For` header is being set correctly, otherwise all clients will be mutually visible.
+
+  Most proxies will set this header automatically but may require additional configuration if you are using something like Cloudflare Proxy.
+
+  ### Note on Websocket fallback
+
+  Enabling WS_FALLBACK provides a fallback if the peer to peer WebRTC connection is not available to the client.
+
+  This is especially useful if you connect to your instance via a VPN as most VPN services block WebRTC completely in order to hide your real IP address.
+
+  *Warning*: All traffic sent between devices using this fallback is routed through the server and therefor not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
+
+# changelog
+changelogs:
+  - { date: "18.02.23:", desc: "Initial Release." }
