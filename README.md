@@ -40,7 +40,7 @@ Find us at:
 [![Jenkins Build](https://img.shields.io/jenkins/build?labelColor=555555&logoColor=ffffff&style=for-the-badge&jobUrl=https%3A%2F%2Fci.linuxserver.io%2Fjob%2FDocker-Pipeline-Builders%2Fjob%2Fdocker-pairdrop%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.linuxserver.io/job/Docker-Pipeline-Builders/job/docker-pairdrop/job/master/)
 [![LSIO CI](https://img.shields.io/badge/dynamic/yaml?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=CI&query=CI&url=https%3A%2F%2Fci-tests.linuxserver.io%2Flinuxserver%2Fpairdrop%2Flatest%2Fci-status.yml)](https://ci-tests.linuxserver.io/linuxserver/pairdrop/latest/index.html)
 
-[Pairdrop](https://github.com/schlagmichdoch/PairDrop) is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.
+[PairDrop](https://github.com/schlagmichdoch/PairDrop) is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices.
 
 [![pairdrop](https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/public/images/android-chrome-512x512.png)](https://github.com/schlagmichdoch/PairDrop)
 
@@ -60,7 +60,7 @@ The architectures supported by this image are:
 
 ## Application Setup
 
-Web UI is accessible at http://SERVERIP:PORT. It is strongly recommended to run PairDrop via a reverse proxy, served over HTTPS. In this configuration you must ensure that the `X-Forwarded-For` header is being set correctly, otherwise all clients will be mutually visible.
+Web UI is accessible at http://SERVERIP:PORT. It is strongly recommended to run PairDrop via a reverse proxy, served over HTTPS, if you are making it publicly available. In this configuration you must ensure that the `X-Forwarded-For` header is being set correctly, otherwise all clients will be mutually visible.
 
 Most proxies will set this header automatically but may require additional configuration if you are using something like Cloudflare Proxy.
 
@@ -123,7 +123,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e PGID=1000` | for GroupID - see below for explanation |
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-e RATE_LIMIT=false` | Set to `true` to limit clients to 100 requests per 5 min |
-| `-e WS_FALLBACK=false` | Set to `true`` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes). |
+| `-e WS_FALLBACK=false` | Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes). |
 
 ## Environment variables from files (Docker secrets)
 
@@ -234,4 +234,4 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
-* **18.02.23:** - Initial Release.
+* **20.02.23:** - Initial Release.
