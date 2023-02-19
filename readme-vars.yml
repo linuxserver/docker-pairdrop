@@ -4,7 +4,7 @@
 project_name: pairdrop
 project_url: "https://github.com/schlagmichdoch/PairDrop"
 project_logo: "https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/public/images/android-chrome-512x512.png"
-project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) provides local file sharing in your browser. Inspired by Apple's Airdrop."
+project_blurb: "[{{ project_name|capitalize }}]({{ project_url }}) is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
 project_blurb_optional_extras_enabled: false
