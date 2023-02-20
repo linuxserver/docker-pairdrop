@@ -6,7 +6,7 @@ external_type: na
 custom_version_command: "curl -sL https://api.github.com/repos/schlagmichdoch/pairdrop/tags | jq -r .[0].name"
 release_type: stable
 release_tag: latest
-ls_branch: master
+ls_branch: main
 build_armhf: false
 repo_vars:
   - EXT_GIT_BRANCH = 'master'
