@@ -1,0 +1,31 @@
+---
+
+# jenkins variables
+project_name: docker-pairdrop
+external_type: na
+custom_version_command: "curl -sL https://api.github.com/repos/schlagmichdoch/pairdrop/tags | jq -r .[0].name"
+release_type: stable
+release_tag: latest
+ls_branch: main
+build_armhf: false
+repo_vars:
+  - EXT_GIT_BRANCH = 'master'
+  - EXT_USER = 'schlagmichdoch'
+  - EXT_REPO = 'pairdrop'
+  - BUILD_VERSION_ARG = 'PAIRDROP_VERSION'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-pairdrop'
+  - CONTAINER_NAME = 'pairdrop'
+  - DOCKERHUB_IMAGE = 'linuxserver/pairdrop'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/pairdrop'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/pairdrop'
+  - DIST_IMAGE = 'alpine'
+  - MULTIARCH='true'
+  - CI='true'
+  - CI_WEB='true'
+  - CI_PORT='3000'
+  - CI_SSL='false'
+  - CI_DELAY='120'
+  - CI_DOCKERENV='TZ=US/Pacific'
+  - CI_AUTH='user:password'
+  - CI_WEBPATH=''
