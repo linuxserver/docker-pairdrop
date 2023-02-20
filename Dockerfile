@@ -21,12 +21,12 @@ RUN \
   echo "**** install pairdrop ****" && \
   mkdir -p /app/pairdrop && \
   if [ -z ${PAIRDROP_RELEASE} ]; then \
-    PAIRDROP_RELEASE=$(curl -sL "https://api.github.com/repos/schlagmichdoch/PairDrop/commits/master" \
-    | awk '/sha/{print $4;exit}' FS='[""]'); \
+    PAIRDROP_RELEASE=$(curl -sL "https://api.github.com/repos/schlagmichdoch/pairdrop/tags" \
+    | jq -r '.[0].name'); \
   fi && \
   curl -o \
     /tmp/pairdrop.tar.gz -L \
-    "https://github.com/schlagmichdoch/PairDrop/archive/${PAIRDROP_RELEASE}.tar.gz" && \
+    "https://github.com/schlagmichdoch/PairDrop/archive/refs/tags/${PAIRDROP_RELEASE}.tar.gz" && \
   tar xf \
     /tmp/pairdrop.tar.gz -C \
     /app/pairdrop/ --strip-components=1 && \
