@@ -64,6 +64,12 @@ Web UI is accessible at http://SERVERIP:PORT. It is strongly recommended to run 
 
 Most proxies will set this header automatically but may require additional configuration if you are using something like Cloudflare Proxy.
 
+### Custom STUN/TURN Servers
+
+To specify custom STUN/TURN servers for PairDrop clients to use, create a JSON config file in a mounted path and use the RTC_CONFIG environment variable to point to it.
+
+You can use https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/rtc_config_example.json as a starting point.
+
 ### Note on Websocket fallback
 
 Enabling WS_FALLBACK provides a fallback if the peer to peer WebRTC connection is not available to the client.
@@ -91,6 +97,7 @@ services:
       - TZ=Etc/UTC
       - RATE_LIMIT=false #optional
       - WS_FALLBACK=false #optional
+      - RTC_CONFIG= #optional
     ports:
       - 3000:3000
     restart: unless-stopped
@@ -106,6 +113,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -e RATE_LIMIT=false `#optional` \
   -e WS_FALLBACK=false `#optional` \
+  -e RTC_CONFIG= `#optional` \
   -p 3000:3000 \
   --restart unless-stopped \
   lscr.io/linuxserver/pairdrop:latest
@@ -124,6 +132,7 @@ Container images are configured using parameters passed at runtime (such as thos
 | `-e TZ=Etc/UTC` | specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-e RATE_LIMIT=false` | Set to `true` to limit clients to 100 requests per 5 min |
 | `-e WS_FALLBACK=false` | Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes). |
+| `-e RTC_CONFIG=` | Path to a json file containing custom STUN/TURN config (see App Setup notes) |
 
 ## Environment variables from files (Docker secrets)
 
