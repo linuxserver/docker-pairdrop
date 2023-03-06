@@ -62,4 +62,5 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "06.03.23:", desc: "Run npm install as non-root user." }
   - { date: "20.02.23:", desc: "Initial Release." }

@@ -10,7 +10,6 @@ LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DA
 LABEL maintainer="thespad"
 
 # environment settings
-ENV HOME="/app"
 ENV NODE_ENV="production"
 
 RUN \
@@ -31,12 +30,13 @@ RUN \
     /tmp/pairdrop.tar.gz -C \
     /app/pairdrop/ --strip-components=1 && \
   cd /app/pairdrop && \
-  npm ci && \
+  chown -R abc:abc ./ && \
+  su -s /bin/sh abc -c 'HOME=/tmp NODE_ENV=production npm ci' && \
   echo "**** cleanup ****" && \
   rm -rf \
     $HOME/.cache \
     /tmp/* \
-    /app/.npm
+    /tmp/.npm
 
 # copy local files
 COPY root/ /

@@ -243,4 +243,5 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **06.03.23:** - Run npm install as non-root user.
 * **20.02.23:** - Initial Release.
