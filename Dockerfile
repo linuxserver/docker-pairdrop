@@ -31,7 +31,9 @@ RUN \
     /tmp/pairdrop.tar.gz -C \
     /app/pairdrop/ --strip-components=1 && \
   cd /app/pairdrop && \
-  npm ci && \
+  adduser -D node && \
+  chown -R node:node ./ && \
+  su node -c 'npm ci' && \
   echo "**** cleanup ****" && \
   rm -rf \
     $HOME/.cache \
