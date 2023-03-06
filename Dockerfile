@@ -38,6 +38,7 @@ RUN \
   rm -rf \
     $HOME/.cache \
     /tmp/* \
+    /home/node/.npm \
     /app/.npm
 
 # copy local files
