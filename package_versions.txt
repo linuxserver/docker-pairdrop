@@ -81,7 +81,7 @@ cookie                              0.5.0                  npm
 cookie-signature                    1.0.6                  npm     
 coreutils                           9.1-r0                 apk     
 cssesc                              3.0.0                  npm     
-curl                                7.88.1-r0              apk     
+curl                                7.88.1-r1              apk     
 debug                               2.6.9                  npm     
 debug                               4.3.4                  npm     
 defaults                            1.0.3                  npm     
@@ -157,7 +157,7 @@ libattr                             2.5.1-r2               apk
 libbsd                              0.11.7-r0              apk     
 libc-utils                          0.7.2-r3               apk     
 libcrypto3                          3.0.8-r0               apk     
-libcurl                             7.88.1-r0              apk     
+libcurl                             7.88.1-r1              apk     
 libgcc                              12.2.1_git20220924-r4  apk     
 libintl                             0.21.1-r1              apk     
 libmd                               1.0.4-r0               apk     
