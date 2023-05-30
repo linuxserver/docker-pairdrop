@@ -11,4 +11,4 @@ fi
 
 HOME=/config exec \
     s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 3000" \
-        cd /app/pairdrop s6-setuidgid abc npm start -- "${OPT_RATE_LIMIT}" "${OPT_WS_FALLBACK}"
+    cd /app/pairdrop s6-setuidgid abc npm start -- "${OPT_RATE_LIMIT}" "${OPT_WS_FALLBACK}"

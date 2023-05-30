@@ -63,5 +63,6 @@ app_setup_block: |
 
 # changelog
 changelogs:
+  - { date: "30.05.23:", desc: "Rebase to Alpine 3.18." }
   - { date: "06.03.23:", desc: "Run npm install as non-root user." }
   - { date: "20.02.23:", desc: "Initial Release." }
