@@ -169,7 +169,7 @@ libacl                              2.3.1-r3                apk
 libattr                             2.5.1-r4                apk     
 libbsd                              0.11.7-r1               apk     
 libc-utils                          0.7.2-r5                apk     
-libcrypto3                          3.1.1-r1                apk     
+libcrypto3                          3.1.1-r2                apk     
 libcurl                             8.1.2-r0                apk     
 libgcc                              12.2.1_git20220924-r10  apk     
 libidn2                             2.3.4-r1                apk     
@@ -188,7 +188,7 @@ libnpmsearch                        6.0.2                   npm
 libnpmteam                          5.0.3                   npm     
 libnpmversion                       4.0.2                   npm     
 libproc2                            4.0.3-r1                apk     
-libssl3                             3.1.1-r1                apk     
+libssl3                             3.1.1-r2                apk     
 libstdc++                           12.2.1_git20220924-r10  apk     
 libunistring                        1.1-r1                  apk     
 linux-pam                           1.5.2-r10               apk     
@@ -227,9 +227,9 @@ ncurses-terminfo-base               6.4_p20230506-r0        apk
 negotiator                          0.6.3                   npm     
 netcat-openbsd                      1.219-r1                apk     
 nghttp2-libs                        1.53.0-r0               apk     
-node                                18.16.1                 binary  
+node                                18.17.0                 binary  
 node-gyp                            9.3.1                   npm     
-nodejs                              18.16.1-r0              apk     
+nodejs                              18.17.0-r0              apk     
 nopt                                6.0.0                   npm     
 nopt                                7.1.0                   npm     
 normalize-package-data              5.0.0                   npm     
