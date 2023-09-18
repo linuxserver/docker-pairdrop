@@ -109,7 +109,7 @@ etag                                1.8.1                   npm
 event-target-shim                   5.0.1                   npm   
 events                              3.3.0                   npm   
 express                             4.18.2                  npm   
-express-rate-limit                  6.9.0                   npm   
+express-rate-limit                  7.0.1                   npm   
 fastest-levenshtein                 1.0.16                  npm   
 finalhandler                        1.2.0                   npm   
 foreground-child                    3.1.1                   npm   
@@ -251,7 +251,7 @@ once                                1.4.0                   npm
 oniguruma                           6.9.8-r1                apk   
 p-map                               4.0.0                   npm   
 pacote                              15.1.3                  npm   
-pairdrop                            1.7.7                   npm   
+pairdrop                            1.8.0                   npm   
 parse-conflict-json                 3.0.1                   npm   
 parseurl                            1.3.3                   npm   
 path-is-absolute                    1.0.1                   npm   
@@ -323,7 +323,7 @@ treeverse                           3.0.0                   npm
 tuf-js                              1.1.5                   npm   
 type-is                             1.6.18                  npm   
 tzdata                              2023c-r1                apk   
-ua-parser-js                        1.0.35                  npm   
+ua-parser-js                        1.0.36                  npm   
 unique-filename                     2.0.1                   npm   
 unique-filename                     3.0.0                   npm   
 unique-names-generator              4.7.1                   npm   
@@ -345,6 +345,6 @@ wrap-ansi                           7.0.0                   npm
 wrap-ansi                           8.1.0                   npm   
 wrappy                              1.0.2                   npm   
 write-file-atomic                   5.0.1                   npm   
-ws                                  8.13.0                  npm   
+ws                                  8.14.1                  npm   
 yallist                             4.0.0                   npm   
 zlib                                1.2.13-r1               apk   
