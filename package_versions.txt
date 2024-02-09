@@ -239,7 +239,7 @@ on-finished                         2.4.1                  npm
 oniguruma                           6.9.9-r0               apk   
 p-map                               4.0.0                  npm   
 pacote                              17.0.5                 npm   
-pairdrop                            1.10.6                 npm   
+pairdrop                            1.10.7                 npm   
 parse-conflict-json                 3.0.1                  npm   
 parseurl                            1.3.3                  npm   
 path-key                            3.1.1                  npm   
@@ -304,7 +304,7 @@ toidentifier                        1.0.1                  npm
 treeverse                           3.0.0                  npm   
 tuf-js                              2.1.0                  npm   
 type-is                             1.6.18                 npm   
-tzdata                              2023d-r0               apk   
+tzdata                              2024a-r0               apk   
 ua-parser-js                        1.0.37                 npm   
 unique-filename                     3.0.0                  npm   
 unique-names-generator              4.7.1                  npm   
