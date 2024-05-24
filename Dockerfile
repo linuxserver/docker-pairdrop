@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ghcr.io/linuxserver/baseimage-alpine:3.19
+FROM ghcr.io/linuxserver/baseimage-alpine:3.20
 
 # set version label
 ARG BUILD_DATE
@@ -32,6 +32,7 @@ RUN \
   cd /app/pairdrop && \
   chown -R abc:abc ./ && \
   su -s /bin/sh abc -c 'HOME=/tmp NODE_ENV=production npm ci' && \
+  printf "Linuxserver.io version: ${VERSION}\nBuild-date: ${BUILD_DATE}" > /build_version && \
   echo "**** cleanup ****" && \
   rm -rf \
     $HOME/.cache \

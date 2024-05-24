@@ -28,7 +28,7 @@ Find us at:
 
 # [linuxserver/pairdrop](https://github.com/linuxserver/docker-pairdrop)
 
-[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Fpairdrop?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh/gateway/linuxserver-ci/docker/linuxserver%2Fpairdrop)
+[![Scarf.io pulls](https://scarf.sh/installs-badge/linuxserver-ci/linuxserver%2Fpairdrop?color=94398d&label-color=555555&logo-color=ffffff&style=for-the-badge&package-type=docker)](https://scarf.sh)
 [![GitHub Stars](https://img.shields.io/github/stars/linuxserver/docker-pairdrop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-pairdrop)
 [![GitHub Release](https://img.shields.io/github/release/linuxserver/docker-pairdrop.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&logo=github)](https://github.com/linuxserver/docker-pairdrop/releases)
 [![GitHub Package Repository](https://img.shields.io/static/v1.svg?color=94398d&labelColor=555555&logoColor=ffffff&style=for-the-badge&label=linuxserver.io&message=GitHub%20Package&logo=github)](https://github.com/linuxserver/docker-pairdrop/packages)
@@ -75,7 +75,7 @@ Enabling WS_FALLBACK provides a fallback if the peer to peer WebRTC connection i
 
 This is especially useful if you connect to your instance via a VPN as most VPN services block WebRTC completely in order to hide your real IP address.
 
-*Warning*: All traffic sent between devices using this fallback is routed through the server and therefor not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
+*Warning*: All traffic sent between devices using this fallback is routed through the server and therefore not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
 
 ## Usage
 
@@ -295,6 +295,7 @@ Once registered you can define the dockerfile to use with `-f Dockerfile.aarch64
 
 ## Versions
 
+* **24.05.24:** - Rebase to Alpine 3.20.
 * **31.01.24:** - Rebase to Alpine 3.19.
 * **30.05.23:** - Rebase to Alpine 3.18.
 * **06.03.23:** - Run npm install as non-root user.
