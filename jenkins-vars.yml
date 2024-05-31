@@ -7,7 +7,6 @@ custom_version_command: "curl -sL https://api.github.com/repos/schlagmichdoch/pa
 release_type: stable
 release_tag: latest
 ls_branch: main
-build_armhf: false
 repo_vars:
   - EXT_GIT_BRANCH = 'master'
   - EXT_USER = 'schlagmichdoch'
@@ -25,9 +24,9 @@ repo_vars:
   - CI_WEB='true'
   - CI_PORT='3000'
   - CI_SSL='false'
-  - CI_DELAY='120'
-  - CI_DOCKERENV='TZ=US/Pacific'
-  - CI_AUTH='user:password'
+  - CI_DELAY='60'
+  - CI_DOCKERENV=''
+  - CI_AUTH=''
   - CI_WEBPATH=''
 sponsor_links:
   - { name: "PairDrop", url: "https://www.buymeacoffee.com/pairdrop" }

@@ -7,25 +7,14 @@ project_logo: "https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/
 project_blurb: "[PairDrop]({{ project_url }}) is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
 
-project_blurb_optional_extras_enabled: false
-project_blurb_optional_extras: []
-
 # supported architectures
 available_architectures:
   - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
   - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
 
-# development version
-development_versions: false
-development_versions_items:
-
 # container parameters
 common_param_env_vars_enabled: true
 param_container_name: "{{ project_name }}"
-
-param_usage_include_net: false
-
-param_usage_include_env: false
 
 opt_param_usage_include_env: true
 opt_param_env_vars:
@@ -33,8 +22,6 @@ opt_param_env_vars:
   - { env_var: "WS_FALLBACK", env_value: "false", desc: "Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes)." }
   - { env_var: "RTC_CONFIG", env_value: "", desc: "Path to a json file containing custom STUN/TURN config (see App Setup notes)" }
   - { env_var: "DEBUG_MODE", env_value: "false", desc: "Set to `true` to debug the http server configuration by logging clients IP addresses used by PairDrop to STDOUT. [See here for more info](https://github.com/schlagmichdoch/PairDrop/blob/master/docs/host-your-own.md#debug-mode). Do not use in production!" }
-
-param_usage_include_vols: false
 
 param_usage_include_ports: true
 param_ports:
@@ -59,10 +46,11 @@ app_setup_block: |
 
   This is especially useful if you connect to your instance via a VPN as most VPN services block WebRTC completely in order to hide your real IP address.
 
-  *Warning*: All traffic sent between devices using this fallback is routed through the server and therefor not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
+  *Warning*: All traffic sent between devices using this fallback is routed through the server and therefore not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
 
 # changelog
 changelogs:
+  - { date: "31.05.24:", desc: "Rebase to Alpine 3.20." }
   - { date: "31.01.24:", desc: "Rebase to Alpine 3.19." }
   - { date: "30.05.23:", desc: "Rebase to Alpine 3.18." }
   - { date: "06.03.23:", desc: "Run npm install as non-root user." }
