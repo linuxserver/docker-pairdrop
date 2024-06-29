@@ -33,7 +33,7 @@ aggregate-error                     3.1.0                  npm
 alpine-baselayout                   3.6.5-r0               apk                    
 alpine-baselayout-data              3.6.5-r0               apk                    
 alpine-keys                         2.4-r1                 apk                    
-alpine-release                      3.20.0-r0              apk                    
+alpine-release                      3.20.1-r0              apk                    
 ansi-regex                          5.0.1                  npm                    
 ansi-regex                          6.0.1                  npm   (+1 duplicate)   
 ansi-styles                         4.3.0                  npm                    
