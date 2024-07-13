@@ -77,6 +77,11 @@ This is especially useful if you connect to your instance via a VPN as most VPN 
 
 *Warning*: All traffic sent between devices using this fallback is routed through the server and therefore not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
 
+## Read-Only Operation
+
+This image can be run with a read-only container filesystem. For details please [read the docs](https://docs.linuxserver.io/misc/read-only/).
+
+
 ## Usage
 
 To help you get started creating a container from this image you can either use docker-compose or the docker cli.
@@ -133,6 +138,7 @@ Containers are configured using parameters passed at runtime (such as those abov
 | `-e WS_FALLBACK=false` | Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes). |
 | `-e RTC_CONFIG=` | Path to a json file containing custom STUN/TURN config (see App Setup notes) |
 | `-e DEBUG_MODE=false` | Set to `true` to debug the http server configuration by logging clients IP addresses used by PairDrop to STDOUT. [See here for more info](https://github.com/schlagmichdoch/PairDrop/blob/master/docs/host-your-own.md#debug-mode). Do not use in production! |
+| `--read-only=true` | Run container with a read-only filesystem. Please [read the docs](https://docs.linuxserver.io/misc/read-only/). |
 
 ## Environment variables from files (Docker secrets)
 
