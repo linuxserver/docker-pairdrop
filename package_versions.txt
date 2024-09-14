@@ -33,7 +33,7 @@ aggregate-error                     3.1.0                  npm
 alpine-baselayout                   3.6.5-r0               apk                    
 alpine-baselayout-data              3.6.5-r0               apk                    
 alpine-keys                         2.4-r1                 apk                    
-alpine-release                      3.20.2-r0              apk                    
+alpine-release                      3.20.3-r0              apk                    
 ansi-regex                          5.0.1                  npm                    
 ansi-regex                          6.0.1                  npm   (+1 duplicate)   
 ansi-styles                         4.3.0                  npm                    
@@ -153,7 +153,7 @@ libacl                              2.3.2-r0               apk
 libattr                             2.5.2-r0               apk                    
 libbase64                           0.5.2-r0               apk                    
 libbsd                              0.12.2-r0              apk                    
-libcrypto3                          3.3.1-r3               apk                    
+libcrypto3                          3.3.2-r0               apk                    
 libcurl                             8.9.1-r1               apk                    
 libgcc                              13.2.1_git20240309-r0  apk                    
 libidn2                             2.3.7-r0               apk                    
@@ -173,7 +173,7 @@ libnpmteam                          6.0.5                  npm
 libnpmversion                       6.0.2                  npm                    
 libproc2                            4.0.4-r0               apk                    
 libpsl                              0.21.5-r1              apk                    
-libssl3                             3.3.1-r3               apk                    
+libssl3                             3.3.2-r0               apk                    
 libstdc++                           13.2.1_git20240309-r0  apk                    
 libunistring                        1.2-r0                 apk                    
 linux-pam                           1.6.0-r0               apk                    
@@ -293,7 +293,7 @@ toidentifier                        1.0.1                  npm
 treeverse                           3.0.0                  npm                    
 tuf-js                              2.2.1                  npm                    
 type-is                             1.6.18                 npm                    
-tzdata                              2024a-r1               apk                    
+tzdata                              2024b-r0               apk                    
 ua-parser-js                        1.0.38                 npm                    
 unique-filename                     3.0.0                  npm                    
 unique-names-generator              4.7.1                  npm                    
