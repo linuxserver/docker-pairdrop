@@ -42,7 +42,7 @@ ansi-regex                          5.0.1                  npm
 ansi-regex                          6.1.0                  npm   (+1 duplicate)   
 ansi-styles                         4.3.0                  npm                    
 ansi-styles                         6.2.1                  npm                    
-apk-tools                           2.14.4-r0              apk                    
+apk-tools                           2.14.4-r1              apk                    
 aproba                              2.0.0                  npm                    
 archy                               1.0.0                  npm                    
 array-flatten                       1.1.1                  npm                    
@@ -84,7 +84,7 @@ coreutils-fmt                       9.5-r1                 apk
 coreutils-sha512sum                 9.5-r1                 apk                    
 cross-spawn                         7.0.6                  npm                    
 cssesc                              3.0.0                  npm                    
-curl                                8.9.1-r2               apk                    
+curl                                8.11.0-r2              apk                    
 debug                               2.6.9                  npm                    
 debug                               4.3.7                  npm                    
 define-data-property                1.1.4                  npm                    
@@ -158,13 +158,13 @@ libacl                              2.3.2-r0               apk
 libattr                             2.5.2-r0               apk                    
 libbase64                           0.5.2-r0               apk                    
 libbsd                              0.12.2-r0              apk                    
-libcrypto3                          3.3.2-r0               apk                    
-libcurl                             8.9.1-r2               apk                    
+libcrypto3                          3.3.2-r1               apk                    
+libcurl                             8.11.0-r2              apk                    
 libgcc                              13.2.1_git20240309-r0  apk                    
 libidn2                             2.3.7-r0               apk                    
 libintl                             0.22.5-r0              apk                    
 libmd                               1.1.0-r0               apk                    
-libncursesw                         6.4_p20240420-r1       apk                    
+libncursesw                         6.4_p20240420-r2       apk                    
 libnpmaccess                        9.0.0                  npm                    
 libnpmdiff                          7.0.0                  npm                    
 libnpmexec                          9.0.0                  npm                    
@@ -178,7 +178,7 @@ libnpmteam                          7.0.0                  npm
 libnpmversion                       7.0.0                  npm                    
 libproc2                            4.0.4-r0               apk                    
 libpsl                              0.21.5-r1              apk                    
-libssl3                             3.3.2-r0               apk                    
+libssl3                             3.3.2-r1               apk                    
 libstdc++                           13.2.1_git20240309-r0  apk                    
 libunistring                        1.2-r0                 apk                    
 linux-pam                           1.6.0-r0               apk                    
@@ -210,7 +210,7 @@ ms                                  2.1.3                  npm   (+1 duplicate)
 musl                                1.2.5-r0               apk                    
 musl-utils                          1.2.5-r0               apk                    
 mute-stream                         2.0.0                  npm                    
-ncurses-terminfo-base               6.4_p20240420-r1       apk                    
+ncurses-terminfo-base               6.4_p20240420-r2       apk                    
 negotiator                          0.6.3                  npm                    
 negotiator                          0.6.4                  npm                    
 negotiator                          1.0.0                  npm                    
