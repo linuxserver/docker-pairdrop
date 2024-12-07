@@ -6,29 +6,23 @@ project_url: "https://github.com/schlagmichdoch/PairDrop"
 project_logo: "https://raw.githubusercontent.com/schlagmichdoch/PairDrop/master/public/images/android-chrome-512x512.png"
 project_blurb: "[PairDrop]({{ project_url }}) is a sublime alternative to AirDrop that works on all platforms. Send images, documents or text via peer to peer connection to devices in the same local network/Wi-Fi or to paired devices."
 project_lsio_github_repo_url: "https://github.com/linuxserver/docker-{{ project_name }}"
-
 # supported architectures
 available_architectures:
-  - { arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
-  - { arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
-
+  - {arch: "{{ arch_x86_64 }}", tag: "amd64-latest"}
+  - {arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
 # container parameters
 common_param_env_vars_enabled: true
 param_container_name: "{{ project_name }}"
-
 opt_param_usage_include_env: true
 opt_param_env_vars:
-  - { env_var: "RATE_LIMIT", env_value: "false", desc: "Set to `true` to limit clients to 100 requests per 5 min" }
-  - { env_var: "WS_FALLBACK", env_value: "false", desc: "Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes)." }
-  - { env_var: "RTC_CONFIG", env_value: "", desc: "Path to a json file containing custom STUN/TURN config (see App Setup notes)" }
-  - { env_var: "DEBUG_MODE", env_value: "false", desc: "Set to `true` to debug the http server configuration by logging clients IP addresses used by PairDrop to STDOUT. [See here for more info](https://github.com/schlagmichdoch/PairDrop/blob/master/docs/host-your-own.md#debug-mode). Do not use in production!" }
-
+  - {env_var: "RATE_LIMIT", env_value: "false", desc: "Set to `true` to limit clients to 100 requests per 5 min"}
+  - {env_var: "WS_FALLBACK", env_value: "false", desc: "Set to `true` to enable websocket fallback if the peer to peer WebRTC connection is not available to the client (see App Setup notes)."}
+  - {env_var: "RTC_CONFIG", env_value: "", desc: "Path to a json file containing custom STUN/TURN config (see App Setup notes)"}
+  - {env_var: "DEBUG_MODE", env_value: "false", desc: "Set to `true` to debug the http server configuration by logging clients IP addresses used by PairDrop to STDOUT. [See here for more info](https://github.com/schlagmichdoch/PairDrop/blob/master/docs/host-your-own.md#debug-mode). Do not use in production!"}
 param_usage_include_ports: true
 param_ports:
-  - { external_port: "3000", internal_port: "3000", port_desc: "http gui" }
-
+  - {external_port: "3000", internal_port: "3000", port_desc: "http gui"}
 readonly_supported: true
-
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
@@ -49,11 +43,53 @@ app_setup_block: |
   This is especially useful if you connect to your instance via a VPN as most VPN services block WebRTC completely in order to hide your real IP address.
 
   *Warning*: All traffic sent between devices using this fallback is routed through the server and therefore not peer to peer! Traffic routed via this fallback is readable by the server and uses the server's bandwidth.
-
+# init diagram
+init_diagram: |
+  "pairdrop:latest": {
+    docker-mods
+    base {
+      fix-attr +\nlegacy cont-init
+    }
+    docker-mods -> base
+    legacy-services
+    custom services
+    init-services -> legacy-services
+    init-services -> custom services
+    custom services -> legacy-services
+    legacy-services -> ci-service-check
+    init-migrations -> init-adduser
+    init-os-end -> init-config
+    init-config -> init-config-end
+    init-pairdrop-config -> init-config-end
+    init-os-end -> init-crontab-config
+    init-mods-end -> init-custom-files
+    base -> init-envfile
+    base -> init-migrations
+    base -> init-mods
+    init-config-end -> init-mods
+    init-mods -> init-mods-end
+    init-mods-package-install -> init-mods-end
+    init-mods -> init-mods-package-install
+    base -> init-os-end
+    init-adduser -> init-os-end
+    init-envfile -> init-os-end
+    init-migrations -> init-os-end
+    init-config -> init-pairdrop-config
+    init-custom-files -> init-services
+    init-mods-end -> init-services
+    init-services -> svc-cron
+    svc-cron -> legacy-services
+    init-services -> svc-pairdrop
+    svc-pairdrop -> legacy-services
+  }
+  Base Images: {
+    "baseimage-alpine:3.20"
+  }
+  "pairdrop:latest" <- Base Images
 # changelog
 changelogs:
-  - { date: "31.05.24:", desc: "Rebase to Alpine 3.20." }
-  - { date: "31.01.24:", desc: "Rebase to Alpine 3.19." }
-  - { date: "30.05.23:", desc: "Rebase to Alpine 3.18." }
-  - { date: "06.03.23:", desc: "Run npm install as non-root user." }
-  - { date: "20.02.23:", desc: "Initial Release." }
+  - {date: "31.05.24:", desc: "Rebase to Alpine 3.20."}
+  - {date: "31.01.24:", desc: "Rebase to Alpine 3.19."}
+  - {date: "30.05.23:", desc: "Rebase to Alpine 3.18."}
+  - {date: "06.03.23:", desc: "Run npm install as non-root user."}
+  - {date: "20.02.23:", desc: "Initial Release."}
