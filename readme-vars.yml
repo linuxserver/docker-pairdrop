@@ -23,6 +23,7 @@ param_usage_include_ports: true
 param_ports:
   - {external_port: "3000", internal_port: "3000", port_desc: "http gui"}
 readonly_supported: true
+nonroot_supported: true
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
@@ -88,6 +89,7 @@ init_diagram: |
   "pairdrop:latest" <- Base Images
 # changelog
 changelogs:
+  - {date: "21.12.24:", desc: "Rebase to Alpine 3.20."}
   - {date: "31.05.24:", desc: "Rebase to Alpine 3.20."}
   - {date: "31.01.24:", desc: "Rebase to Alpine 3.19."}
   - {date: "30.05.23:", desc: "Rebase to Alpine 3.18."}
