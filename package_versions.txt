@@ -119,7 +119,7 @@ fresh                               0.5.2             npm
 fs-minipass                         2.1.0             npm                    
 fs-minipass                         3.0.3             npm                    
 function-bind                       1.1.2             npm                    
-get-intrinsic                       1.2.7             npm                    
+get-intrinsic                       1.3.0             npm                    
 get-proto                           1.0.1             npm                    
 glob                                10.4.5            npm                    
 gopd                                1.2.0             npm                    
@@ -243,7 +243,7 @@ p-map                               7.0.2             npm
 package-json-from-dist              1.0.1             npm                    
 pacote                              19.0.1            npm                    
 pacote                              20.0.0            npm                    
-pairdrop                            1.11.1            npm                    
+pairdrop                            1.11.2            npm                    
 parse-conflict-json                 4.0.0             npm                    
 parseurl                            1.3.3             npm                    
 path-key                            3.1.1             npm                    
@@ -337,7 +337,7 @@ which                               5.0.0             npm
 wrap-ansi                           7.0.0             npm                    
 wrap-ansi                           8.1.0             npm                    
 write-file-atomic                   6.0.0             npm                    
-ws                                  8.18.0            npm                    
+ws                                  8.18.1            npm                    
 yallist                             4.0.0             npm                    
 yallist                             5.0.0             npm                    
 zlib                                1.3.1-r2          apk                    
