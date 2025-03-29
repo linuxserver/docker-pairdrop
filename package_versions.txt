@@ -86,7 +86,7 @@ coreutils-fmt                       9.5-r2            apk
 coreutils-sha512sum                 9.5-r2            apk                    
 cross-spawn                         7.0.6             npm                    
 cssesc                              3.0.0             npm                    
-curl                                8.12.1-r0         apk                    
+curl                                8.12.1-r1         apk                    
 debug                               2.6.9             npm                    
 debug                               4.3.7             npm                    
 depd                                2.0.0             npm                    
@@ -160,7 +160,7 @@ just-diff-apply                     5.5.0             npm
 libattr                             2.5.2-r2          apk                    
 libbsd                              0.12.2-r0         apk                    
 libcrypto3                          3.3.3-r0          apk                    
-libcurl                             8.12.1-r0         apk                    
+libcurl                             8.12.1-r1         apk                    
 libgcc                              14.2.0-r4         apk                    
 libidn2                             2.3.7-r0          apk                    
 libintl                             0.22.5-r0         apk                    
