@@ -316,7 +316,7 @@ toidentifier                        1.0.1             npm
 treeverse                           3.0.0             npm                    
 tuf-js                              3.0.1             npm                    
 type-is                             1.6.18            npm                    
-tzdata                              2025a-r0          apk                    
+tzdata                              2025b-r0          apk                    
 ua-parser-js                        1.0.40            npm                    
 unique-filename                     3.0.0             npm                    
 unique-filename                     4.0.0             npm                    
