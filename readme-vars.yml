@@ -88,7 +88,8 @@ init_diagram: |
   "pairdrop:latest" <- Base Images
 # changelog
 changelogs:
-  - {date: "21.12.24:", desc: "Rebase to Alpine 3.20."}
+  - {date: "05.07.25:", desc: "Rebase to Alpine 3.22."}
+  - {date: "21.12.24:", desc: "Rebase to Alpine 3.21."}
   - {date: "31.05.24:", desc: "Rebase to Alpine 3.20."}
   - {date: "31.01.24:", desc: "Rebase to Alpine 3.19."}
   - {date: "30.05.23:", desc: "Rebase to Alpine 3.18."}
