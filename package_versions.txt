@@ -128,8 +128,8 @@ http-proxy-agent                    7.0.2             npm
 https-proxy-agent                   7.0.6             npm                    
 iconv-lite                          0.4.24            npm                    
 iconv-lite                          0.6.3             npm                    
-icu-data-en                         76.1-r0           apk                    
-icu-libs                            76.1-r0           apk                    
+icu-data-en                         76.1-r1           apk                    
+icu-libs                            76.1-r1           apk                    
 ignore-walk                         7.0.0             npm                    
 imurmurhash                         0.1.4             npm                    
 inherits                            2.0.4             npm                    
