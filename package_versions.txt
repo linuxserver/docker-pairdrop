@@ -213,7 +213,7 @@ nodejs                              22.16.0-r2        apk
 nopt                                8.1.0             npm                    
 normalize-package-data              7.0.0             npm                    
 npm                                 11.3.0            npm                    
-npm                                 11.3.0-r0         apk                    
+npm                                 11.3.0-r1         apk                    
 npm-audit-report                    6.0.0             npm                    
 npm-bundled                         4.0.0             npm                    
 npm-install-checks                  7.1.1             npm                    
