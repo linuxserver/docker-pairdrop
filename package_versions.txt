@@ -34,7 +34,7 @@ agent-base                          7.1.3             npm
 alpine-baselayout                   3.7.0-r0          apk                    
 alpine-baselayout-data              3.7.0-r0          apk                    
 alpine-keys                         2.5-r0            apk                    
-alpine-release                      3.22.1-r0         apk                    
+alpine-release                      3.22.2-r0         apk                    
 ansi-regex                          5.0.1             npm                    
 ansi-regex                          6.1.0             npm   (+1 duplicate)   
 ansi-styles                         4.3.0             npm                    
